@@ -9,19 +9,19 @@
 			name: '吃饭',
 			completed: false
 		}, {
-			id: 1,
+			id: 2,
 			name: '睡觉',
 			completed: false
 		}, {
-			id: 1,
+			id: 3,
 			name: '敲代码',
 			completed: true
 		}, {
-			id: 1,
+			id: 4,
 			name: '占一把',
 			completed: false
 		}, {
-			id: 1,
+			id: 5,
 			name: '锻炼',
 			completed: true
 		}]
@@ -49,6 +49,37 @@
 			})
 			$scope.newTodos = '';
 		}
+		//显示未完成任务
+		$scope.getActive = function () {
+			var count = 0;
+			for (var i = 0; i < $scope.todos.length; i++) {
+				var item = $scope.todos[i];
+				if (!item.completed) {
+					count++;
+				}
+
+			}
+			return count;
+		}
+		//清除已完成任务
+		$scope.clearAll = function () {
+			for (var i = $scope.todos.length - 1; i >= 0; i--) {
+				var item = $scope.todos[i];
+				if (item.completed) {
+					$scope.todos.splice(i, 1);
+				}
+			}
+		}
+		//修改任务
+		$scope.isEditing = -1;
+		$scope.edit = function (id) {
+			console.log(id)
+			$scope.isEditing = id;
+		}
+		$scope.save = function () {
+			$scope.isEditing = -1;
+		}
+
 	}])
 
 })(window);
